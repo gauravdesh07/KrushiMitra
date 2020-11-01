@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "581127217228",
+    "firebase_url": "https://krushimitra-a28c1.firebaseio.com",
+    "project_id": "krushimitra-a28c1",
+    "storage_bucket": "krushimitra-a28c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581127217228:android:3cebb6efafc6f7b4d0d4e9",
+        "android_client_info": {
+          "package_name": "com.gaurav.krushimitra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581127217228-tj2c4cbtv5t0ner6549as9v0985o1aq4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEa5NTP1zslWk5LC0W23JQHkhf-ddnXbE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581127217228-tj2c4cbtv5t0ner6549as9v0985o1aq4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

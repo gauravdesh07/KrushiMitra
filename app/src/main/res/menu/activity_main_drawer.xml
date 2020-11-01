@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single"/>
+    <item
+        android:id="@+id/Home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_diagnose"
+        android:title="Disease Diagnosis" />
+    <item
+        android:id="@+id/nav_register"
+        android:title="Expenditure" />
+        <item
+            android:id="@+id/nav_receipts"
+            android:title="Weather Info"
+            />
+        <item
+            android:id="@+id/nav_events"
+            android:title="Crop Suggestion" />
+</menu>
