@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:nestedScrollingEnabled="true"
-    android:background="@color/colorBackground"
+    android:background="@drawable/darktwo"
     android:layout_height="match_parent">
 
 
@@ -28,8 +28,9 @@
             app:layout_constraintCircleRadius="50sp"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            style="@style/CardFont"
             android:orientation="horizontal"
-            android:outlineSpotShadowColor="@color/cardview_light_background">
+            android:outlineSpotShadowColor="@color/darkblue">
 
             <!-- Inside this one vertical for displaying crop icon and name -->
 
@@ -44,7 +45,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:src="@drawable/ic_sunny" />
 
 
@@ -52,11 +53,12 @@
                 <TextView
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:fontFamily="@font/equinox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="4"
                     android:textSize="20sp"
-                    android:text="Sugarcane"
+                    android:text="Maize"
                     android:textColor="@color/cardview_light_background"/>
             </LinearLayout>
 
@@ -66,32 +68,24 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
+                android:id="@+id/temperature"
                 android:text="Tempt"
+                android:fontFamily="@font/equinox"
                 android:textSize="15sp"
-                android:textColor="@color/cardview_light_background"
                 android:layout_gravity="center"
+                android:textColor="@color/cardview_light_background"
                 android:gravity="center"
                 />
 
 
             <TextView
                 android:layout_width="0dp"
+                android:fontFamily="@font/equinox"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="SunHour"
-                android:textSize="15sp"
-                android:textColor="@color/cardview_light_background"
-                android:layout_gravity="center"
-                android:gravity="center"
-                />
-
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Humid"
+                android:layout_weight="2"
+                android:text="Humidity"
+                android:id="@+id/humidity"
                 android:textSize="15sp"
                 android:textColor="@color/cardview_light_background"
                 android:layout_gravity="center"
@@ -105,7 +99,7 @@
         <LinearLayout
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="450dp"
             android:orientation="horizontal"
             >
 
@@ -120,22 +114,30 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:background="@drawable/border"
+                style="@style/CardFont"
                 android:layout_gravity="center"
                 android:gravity="center">
 
 
-                <TextView
-                    android:background="@color/colorCyan2"
-                    android:layout_weight="3"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_height="0dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="20dp"
+                    app:strokeColor="@color/colorBackground"
+                    app:strokeWidth="2dp"
+                    android:layout_weight="3">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="Sowing"
+                    style="@style/CardFont"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="@color/cardview_light_background"
                     android:textSize="25sp"
                     android:layout_marginBottom="5dp"
                     />
+                </com.google.android.material.card.MaterialCardView>
 
 
                 <LinearLayout
@@ -143,20 +145,25 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_weight="1.5"
+                    android:layout_marginTop="10dp"
                     >
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_gravity="center"
                         android:src="@drawable/ic_circle"
                         />
 
                     <TextView
                         android:layout_weight="3"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Fertilizer"
+                        android:fontFamily="@font/berkshire_swash"
                         android:textColor="@color/cardview_light_background"
                         android:textSize="15sp"
                         />
@@ -171,6 +178,7 @@
 
                     <ImageView
                         android:layout_width="0dp"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/ic_circle"
@@ -179,8 +187,11 @@
                     <TextView
                         android:layout_weight="3"
                         android:layout_width="0dp"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:text="Water"
+                        android:fontFamily="@font/berkshire_swash"
+                        android:gravity="center"
                         android:textColor="@color/cardview_light_background"
                         android:textSize="15sp"
                         />
@@ -195,6 +206,7 @@
 
                     <ImageView
                         android:layout_width="0dp"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/ic_circle"
@@ -203,6 +215,9 @@
                     <TextView
                         android:layout_weight="3"
                         android:layout_width="0dp"
+                        android:fontFamily="@font/berkshire_swash"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:layout_height="wrap_content"
                         android:text="Look out 3 times a day"
                         android:textColor="@color/cardview_light_background"
@@ -218,15 +233,20 @@
                     >
 
                     <ImageView
+                        android:layout_gravity="center"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/ic_circle"
                         />
 
+
                     <TextView
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:layout_width="0dp"
+                        android:fontFamily="@font/berkshire_swash"
                         android:layout_height="wrap_content"
                         android:text="Pesticides"
                         android:textColor="@color/cardview_light_background"
@@ -243,6 +263,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:background="@drawable/border"
+                style="@style/CardFont"
                 >
 
                 <!-- Now we need 2 again Vertical LL for definition and Calculator -->
@@ -253,28 +275,37 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:background="@drawable/border"
                     >
 
-                    <TextView
-                        android:background="@color/colorCyan2"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_height="0dp"
-                        android:layout_weight="4"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="20dp"
+                        app:strokeColor="@color/colorBackground"
+                        app:strokeWidth="2dp"
+                        android:layout_weight="3">
+                    <TextView
+                        android:layout_width="match_parent"
+                        style="@style/CardFont"
+                        android:layout_height="match_parent"
                         android:textSize="25sp"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="What is Sowing ?"
-                        android:textColor="@color/cardview_light_background"
+                        android:text="Definition"
                         />
+                    </com.google.android.material.card.MaterialCardView>
 
 
                     <TextView
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="3"
+                        android:layout_weight="6"
                         android:textSize="15sp"
+                        android:fontFamily="@font/berkshire_swash"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="When we plant a plant and then sow a seed it is called Sowing. (I guess so)"
                         android:textColor="@color/cardview_light_background"
                         />
@@ -282,54 +313,7 @@
 
 <!-- This LL us for Resource calculator some basic calculaions-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:background="@drawable/border"
-                    >
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout0"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:hint="Enter Land"
-                        android:textColorHint="#C0C0C0"
-                        app:boxCornerRadiusBottomEnd="15dp"
-                        app:boxCornerRadiusBottomStart="15dp"
-                        app:boxCornerRadiusTopEnd="15dp"
-                        android:layout_weight="1"
-                        app:boxCornerRadiusTopStart="15dp"
-                        app:boxStrokeColor="@color/colorAccent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/input_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textEmailAddress" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="3"
-                        android:textSize="15sp"
-                        android:text="Urea Needed is:- _____"
-                        android:textColor="@color/cardview_light_background"
-                        />
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="3"
-                        android:textSize="15sp"
-                        android:text="Nitogen Needed :- _____"
-                        android:textColor="@color/cardview_light_background"
-                        />
-                </LinearLayout>
 
 
 
@@ -349,17 +333,24 @@
             android:layout_gravity="center"
             android:gravity="center">
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/colorBackground"
+                app:strokeWidth="6dp"
+                android:layout_weight="2">
             <TextView
-                android:background="@color/colorCyan2"
+                style="@style/CardFont"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_height="match_parent"
                 android:textSize="25sp"
                 android:text="Finance"
-                android:textColor="@color/cardview_light_background"
                 />
+            </com.google.android.material.card.MaterialCardView>
 
 
             <TextView

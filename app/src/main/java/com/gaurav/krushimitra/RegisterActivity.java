@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth firebaseAuth;
-    TextInputEditText name,email,password,city;
+    TextInputEditText name,email,password,mobile;
     Button register;
     CollectionReference UserData;
     @Override
@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         name=findViewById(R.id.input_name);
         email=findViewById(R.id.input_email);
         password=findViewById(R.id.input_password);
-        city=findViewById(R.id.input_city);
+        mobile=findViewById(R.id.input_mobile);
 
         register=findViewById(R.id.register);
 
@@ -49,14 +49,14 @@ public class RegisterActivity extends AppCompatActivity {
                 String names=name.getText().toString();
                 final String emails=email.getText().toString();
                 final String passwords=password.getText().toString();
-                String citys=city.getText().toString();
-                if(!names.isEmpty() && !emails.isEmpty() && !passwords.isEmpty() && !citys.isEmpty())
+                String mobiles=mobile.getText().toString();
+                if(!names.isEmpty() && !emails.isEmpty() && !passwords.isEmpty() && !mobiles.isEmpty())
                 {
                     if(passwords.length()<6)
                         Toast.makeText(RegisterActivity.this, "Minimum length of password must be 6 characters", Toast.LENGTH_SHORT).show();
                     else{
                         UserData=firebaseFirestore.collection("UserData");
-                        User user=new User(names,emails,passwords,citys);
+                        User user=new User(names,emails,passwords,mobiles);
                         UserData.add(user)
                         .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override

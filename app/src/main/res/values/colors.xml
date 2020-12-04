@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#014666</color>
-    <color name="colorPrimaryDark">#010315</color>
-    <color name="colorAccent">#259CD4</color><!--#D81B60-->
+    <color name="colorPrimary">#014666</color> <!--  #6200EE-->
+    <color name="colorPrimaryDark">#010315</color> <!-- #3700B3-->
+    <color name="colorAccent">#259CD4</color><!--  #BB86FC   #D81B60-->
     <color name="black">#000000</color>
     <color name="colorBackground">#010315</color>
     <color name="colorWhite">#FFFFFF</color>
@@ -14,6 +14,7 @@
     <color name="colorDarkBlue3">#014666</color>
     <color name="colorDarkBlue4">#03A9F4</color>
 
+    <color name="cardview_light_background">#FFFFFF</color>
     <color name="darkblue">#010315</color>
     <color name="white">#FFFFFF</color>
 </resources>

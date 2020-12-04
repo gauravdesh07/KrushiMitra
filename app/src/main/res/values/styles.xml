@@ -35,7 +35,7 @@
     </style>
 
     <style name="CardFont">
-        <item name="android:fontFamily">@font/expansivabolditalic</item>
+        <item name="android:fontFamily">@font/equinox</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>

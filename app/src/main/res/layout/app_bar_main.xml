@@ -21,8 +21,10 @@
             app:titleTextColor="@color/white"
             app:title="KRUSHIMITRA"
             app:navigationIcon="@drawable/ic_navbar"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:menu="@menu/main"/>
     </com.google.android.material.appbar.AppBarLayout>
+    <!--#030622 -->
 
 
 

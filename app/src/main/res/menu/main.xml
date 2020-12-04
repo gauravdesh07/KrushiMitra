@@ -3,7 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <!--    android:id="@+id/bug_report"-->
     <item
-        app:showAsAction="ifRoom"
-        android:title="ADA"/>
+        android:id="@+id/refresh"
+        android:title="Refresh"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_refresh"
+        />
+
+
+    <item
+        android:id="@+id/logout"
+        android:title="LogOut"
+        android:icon="@drawable/ic_logout"
+        app:showAsAction="always"
+        />
 
 </menu>

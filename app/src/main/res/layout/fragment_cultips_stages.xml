@@ -1,161 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorBackground"
+    android:background="@drawable/darktwo"
     android:orientation="vertical">
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        app:cardCornerRadius="20dp"
+        app:strokeWidth="6dp"
+        android:layout_marginTop="10dp">
     <LinearLayout
         android:background="@drawable/border"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_weight="1"
         app:layout_constraintCircleRadius="50sp"
         >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:layout_gravity="center"
-            android:foregroundGravity="center"
-            android:src="@drawable/ic_sunny"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="Pre-Seeding Stage"
-            android:textSize="15sp"
-            android:textColor="@color/cardview_light_background"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_sunny"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="Pre-Seeding Stage"
+                android:textSize="15sp"
+                style="@style/CardFont"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
 
     </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
-    <LinearLayout
-        android:background="@drawable/border"
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_weight="1"
-        app:layout_constraintCircleRadius="50sp"
-        >
-
-        <ImageView
-            android:layout_width="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:strokeWidth="6dp"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+            android:background="@drawable/border"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:layout_gravity="center"
-            android:foregroundGravity="center"
-            android:src="@drawable/ic_sunny"
-            />
-        <TextView
-            android:textColor="@color/cardview_light_background"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="Pre-Seeding Stage"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            app:layout_constraintCircleRadius="50sp"
+            >
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_sunny"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="Sowing"
+                android:textSize="15sp"
+                style="@style/CardFont"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
-    <LinearLayout
-        android:background="@drawable/border"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_weight="1"
-        app:layout_constraintCircleRadius="50sp"
-        >
-
-        <ImageView
-            android:layout_width="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:strokeWidth="6dp"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+            android:background="@drawable/border"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:layout_gravity="center"
-            android:foregroundGravity="center"
-            android:src="@drawable/ic_sunny"
-            />
-        <TextView
-            android:textColor="@color/cardview_light_background"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="Pre-Seeding Stage"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            app:layout_constraintCircleRadius="50sp"
+            >
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_sunny"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="VEGETATIVE"
+                android:textSize="15sp"
+                style="@style/CardFont"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
-    <LinearLayout
-        android:background="@drawable/border"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_weight="1"
-        app:layout_constraintCircleRadius="50sp"
-        >
-
-        <ImageView
-            android:layout_width="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:strokeWidth="6dp"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+            android:background="@drawable/border"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:layout_gravity="center"
-            android:foregroundGravity="center"
-            android:src="@drawable/ic_sunny"
-            />
-        <TextView
-            android:textColor="@color/cardview_light_background"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="Pre-Seeding Stage"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            app:layout_constraintCircleRadius="50sp"
+            >
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_sunny"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="Pollination"
+                android:textSize="15sp"
+                style="@style/CardFont"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
 
-    <LinearLayout
-        android:background="@drawable/border"
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_weight="1"
-        app:layout_constraintCircleRadius="50sp"
-        >
-
-        <ImageView
-            android:layout_width="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:strokeWidth="6dp"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+            android:background="@drawable/border"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:layout_gravity="center"
-            android:foregroundGravity="center"
-            android:src="@drawable/ic_sunny"
-            />
-        <TextView
-            android:textColor="@color/cardview_light_background"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="Pre-Seeding Stage"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            app:layout_constraintCircleRadius="50sp"
+            >
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_sunny"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="Fruiting"
+                android:textSize="15sp"
+                style="@style/CardFont"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        app:cardCornerRadius="20dp"
+        app:strokeWidth="6dp"
+        android:layout_marginTop="10dp">
+        <LinearLayout
+            android:background="@drawable/border"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            app:layout_constraintCircleRadius="50sp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_sunny"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="Harvesting"
+                android:textSize="15sp"
+                style="@style/CardFont"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>
+</ScrollView>

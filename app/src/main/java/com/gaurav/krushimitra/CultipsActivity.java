@@ -10,14 +10,26 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class CultipsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     TabLayout tabLayout=null;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main, menu);
+//        return super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
     Toolbar toolbar=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +81,30 @@ public class CultipsActivity extends AppCompatActivity implements NavigationView
             case R.id.cul_tips:
                 startActivity(new Intent(this,CultipsActivity.class));
                 break;
+            case R.id.home:
+                startActivity(new Intent(this,MainActivity.class));
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.refresh) {
+            finish();
+            Intent i = new Intent(getBaseContext(), CultipsActivity.class);
+            startActivity(i);
+        }
+        if (id == R.id.logout) {
+            finish();
+            FirebaseAuth.getInstance().signOut();
+
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
