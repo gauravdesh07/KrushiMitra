@@ -1,12 +1,5 @@
 package com.gaurav.krushimitra;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,14 +7,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -90,6 +88,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.home:
                 startActivity(new Intent(this,MainActivity.class));
+                break;
+            case R.id.nav_diagnose:
+                startActivity(new Intent(this,DiagnosisActivity.class));
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -114,7 +115,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onResponse(JSONObject response) {
                 try {
                     String temp = response.getString("result");
-                    temperature.setText(temp+" /u00B0"+"C");
+                    char c=0xB0;
+                    String ss=" ";
+                    ss+=c;
+                    temperature.setText(temp+ss+"C");
                     humidity.setText(String.valueOf(Integer.parseInt(temp)+1));
 //                    precipitation.setText(String.valueOf(Integer.parseInt(temp)-(2*2)));
                     Log.d("TEMPERATURE RESPONSE", temp);
@@ -123,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         }, new Response.ErrorListener() {
+
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
