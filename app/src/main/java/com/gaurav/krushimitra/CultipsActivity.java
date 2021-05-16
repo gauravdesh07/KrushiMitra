@@ -73,21 +73,6 @@ public class CultipsActivity extends AppCompatActivity implements NavigationView
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id=item.getItemId();
-        switch(id)
-        {
-            case R.id.cul_tips:
-                startActivity(new Intent(this,CultipsActivity.class));
-                break;
-            case R.id.home:
-                startActivity(new Intent(this,MainActivity.class));
-        }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -95,7 +80,7 @@ public class CultipsActivity extends AppCompatActivity implements NavigationView
 
         if (id == R.id.refresh) {
             finish();
-            Intent i = new Intent(getBaseContext(), CultipsActivity.class);
+            Intent i = new Intent(getBaseContext(), MainActivity.class);
             startActivity(i);
         }
         if (id == R.id.logout) {
@@ -106,5 +91,28 @@ public class CultipsActivity extends AppCompatActivity implements NavigationView
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        switch(id)
+        {
+            case R.id.cul_tips:
+                startActivity(new Intent(this,CultipsActivity.class));
+                break;
+            case R.id.home:
+                startActivity(new Intent(this,MainActivity.class));
+                break;
+            case R.id.nav_diagnose:
+                startActivity(new Intent(this,DiagnosisActivity.class));
+                break;
+            case R.id.nav_profile:
+                startActivity(new Intent(this,ProfileActivity.class));
+                break;
+        }
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

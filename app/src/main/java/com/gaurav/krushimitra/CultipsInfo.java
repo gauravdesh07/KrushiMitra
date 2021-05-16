@@ -42,8 +42,20 @@ public class CultipsInfo extends AppCompatActivity implements Serializable, Navi
             s2=s2.replace("\\\\n","\n");
             description.setText("\n\n"+ s2 + "\n");
 
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Toolbar toolbar=null;
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+
+        toggle.syncState();
+        navigationView.setItemIconTintList(null);
+        navigationView.setNavigationItemSelectedListener(this);
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -73,6 +85,13 @@ public class CultipsInfo extends AppCompatActivity implements Serializable, Navi
                 break;
             case R.id.home:
                 startActivity(new Intent(this,MainActivity.class));
+                break;
+            case R.id.nav_diagnose:
+                startActivity(new Intent(this,DiagnosisActivity.class));
+                break;
+            case R.id.nav_profile:
+                startActivity(new Intent(this,ProfileActivity.class));
+                break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -86,4 +105,6 @@ public class CultipsInfo extends AppCompatActivity implements Serializable, Navi
 //        return super.onCreateOptionsMenu(menu);
         return true;
     }
+
+
 }

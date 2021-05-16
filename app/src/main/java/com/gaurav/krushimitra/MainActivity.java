@@ -91,6 +91,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_diagnose:
                 startActivity(new Intent(this,DiagnosisActivity.class));
+                break;
+            case R.id.nav_profile:
+                startActivity(new Intent(this,ProfileActivity.class));
+                break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -99,41 +103,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void Submit(int data)
     {
 //        final String saveData=data;
-        String url="https://samp-model.herokuapp.com/api";
-        requestQueue= Volley.newRequestQueue(getApplicationContext());
-        JSONObject postData=new JSONObject();
         try{
-            postData.put("strt",data);
+            String url="https://samp-model.herokuapp.com/api";
+            try{
+                requestQueue= Volley.newRequestQueue(getApplicationContext());
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+            JSONObject postData=new JSONObject();
+            try{
+                postData.put("strt",data);
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+            JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String temp = response.getString("result");
+                        char c=0xB0;
+                        String ss=" ";
+                        ss+=c;
+                        temperature.setText(temp+ss+"C");
+                        humidity.setText(String.valueOf(Integer.parseInt(temp)+1));
+//                    precipitation.setText(String.valueOf(Integer.parseInt(temp)-(2*2)));
+                        Log.d("TEMPERATURE RESPONSE", temp);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+            requestQueue.add(jsonObjectRequest);
         }
-        catch (JSONException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
 
-        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String temp = response.getString("result");
-                    char c=0xB0;
-                    String ss=" ";
-                    ss+=c;
-                    temperature.setText(temp+ss+"C");
-                    humidity.setText(String.valueOf(Integer.parseInt(temp)+1));
-//                    precipitation.setText(String.valueOf(Integer.parseInt(temp)-(2*2)));
-                    Log.d("TEMPERATURE RESPONSE", temp);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        requestQueue.add(jsonObjectRequest);
     }
 
     @Override

@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -46,44 +48,45 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String names=name.getText().toString();
+                final String names=name.getText().toString();
                 final String emails=email.getText().toString();
                 final String passwords=password.getText().toString();
-                String mobiles=mobile.getText().toString();
+                final String mobiles=mobile.getText().toString();
                 if(!names.isEmpty() && !emails.isEmpty() && !passwords.isEmpty() && !mobiles.isEmpty())
                 {
                     if(passwords.length()<6)
                         Toast.makeText(RegisterActivity.this, "Minimum length of password must be 6 characters", Toast.LENGTH_SHORT).show();
                     else{
-                        UserData=firebaseFirestore.collection("UserData");
-                        User user=new User(names,emails,passwords,mobiles);
-                        UserData.add(user)
-                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentReference> task) {
-                                if(task.isSuccessful())
-                                {
-                                    firebaseAuth.createUserWithEmailAndPassword(emails,passwords).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if(task.isSuccessful())
-                                            {
-                                                Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                        firebaseAuth.createUserWithEmailAndPassword(emails,passwords)
+                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                    @Override
+                                    public void onSuccess(AuthResult authResult) {
+                                        UserData=firebaseFirestore.collection("UserData");
+                                        User user=new User(names,emails,passwords,mobiles);
+                                        UserData.add(user)
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentReference documentReference) {
 
-                                            }
-                                            else
-                                                Toast.makeText(RegisterActivity.this, "Some Error Occured. Please Try Again.", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                                        startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(RegisterActivity.this, "Some Error Occured. Please Try Again.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });;
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(RegisterActivity.this, "Some Error Occured. Please Try Again.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
-                                         }
-                                    });
-
-                                }
-                                else
-                                    Toast.makeText(RegisterActivity.this, "Some Error Occured. Please Try Again.", Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
                     }
                 }
                 else{

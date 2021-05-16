@@ -138,7 +138,7 @@ public class DiagnosisActivity extends AppCompatActivity {
     }
     void compute(File file, final TextView tv) throws IOException {
 
-        String url = new String("https://disease-maize.herokuapp.com/predict");
+        String url = new String("https://corn-dis-eff.herokuapp.com/predict");
 
 
         //OkHttpClient client = new OkHttpClient();
@@ -164,6 +164,7 @@ public class DiagnosisActivity extends AppCompatActivity {
 
                                 // Stuff that updates the UI
                                 tv.setText(ans);
+                                tv.setTextSize(12);
                             }
                         });
 
