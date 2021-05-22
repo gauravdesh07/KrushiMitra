@@ -4,13 +4,15 @@ public class User {
     String name;
     String email;
     String password;
-    String city;
+    String mobile;
+    String date;
 
-    public User(String name, String email, String password, String city) {
+    public User(String name, String email, String password, String mobile,String date) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.city = city;
+        this.mobile = mobile;
+        this.date=date;
     }
 
     public String getName() {
@@ -37,11 +39,4 @@ public class User {
         this.password = password;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
 }

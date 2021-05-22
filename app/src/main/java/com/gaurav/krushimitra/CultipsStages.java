@@ -57,7 +57,8 @@ public class CultipsStages extends Fragment implements Serializable {
 
         initialize();
 
-        firebaseFirestore.collection("CultivationStages").get()
+        firebaseFirestore.collection("CultivationStages")
+                .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

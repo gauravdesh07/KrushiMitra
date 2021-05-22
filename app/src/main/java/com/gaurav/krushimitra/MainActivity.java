@@ -1,17 +1,25 @@
 package com.gaurav.krushimitra;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -21,19 +29,42 @@ import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.model.Document;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tensorflow.lite.Interpreter;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private RequestQueue requestQueue;
-    TextView temperature,humidity;
+    TextView temperature,humidity,task1,task2,task3,task4,definition,stageName;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+    FirebaseFirestore firebaseFirestore;
+    String enteredDate="";
+    LinearLayout l1,l2,l3,l4;
+    ImageView i1,i2,i3,i4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +76,245 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //String eemail=firebaseUser.getEmail();
         temperature=findViewById(R.id.temperature);
         humidity=findViewById(R.id.humidity);
+        task1=findViewById(R.id.task1);
+        task2=findViewById(R.id.task2);
+        task3=findViewById(R.id.task3);
+        task4=findViewById(R.id.task4);
+        definition=findViewById(R.id.def_tv);
+        stageName=findViewById(R.id.stage_tv);
+
+        l1=findViewById(R.id.lay1);
+        l2=findViewById(R.id.lay2);
+        l3=findViewById(R.id.lay3);
+        l4=findViewById(R.id.lay4);
+
+        i1=findViewById(R.id.i1);
+        i2=findViewById(R.id.i2);
+        i3=findViewById(R.id.i3);
+        i4=findViewById(R.id.i4);
+
+
+
+        l1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if((i1.getDrawable()).getConstantState() == ( ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_circle)).getConstantState())
+                    i1.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_line_circle));
+                else if((i1.getDrawable()).getConstantState() == ( ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_line_circle)).getConstantState())
+                    i1.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_circle));
+
+
+            }
+        });
+
+        l2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if((i2.getDrawable()).getConstantState() == ( ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_circle)).getConstantState())
+                    i2.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_line_circle));
+                else if((i2.getDrawable()).getConstantState() == ( ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_line_circle)).getConstantState())
+                    i2.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_circle));
+
+
+            }
+        });
+
+        l3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if((i3.getDrawable()).getConstantState() == ( ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_circle)).getConstantState())
+                    i3.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_line_circle));
+                else if((i3.getDrawable()).getConstantState() == ( ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_line_circle)).getConstantState())
+                    i3.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_circle));
+
+            }
+        });
+
+        l4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if((i4.getTag())== R.drawable.ic_circle)
+//                    i4.setTag(R.drawable.ic_line_circle);
+//
+//                if(((int)i4.getTag() ) == R.drawable.ic_line_circle)
+//                    i4.setTag(R.drawable.ic_circle);
+
+                if((i4.getDrawable()).getConstantState() == ( ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_circle)).getConstantState())
+                    i4.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_line_circle));
+                else if((i4.getDrawable()).getConstantState() == ( ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_line_circle)).getConstantState())
+                    i4.setImageDrawable(ContextCompat.getDrawable(getBaseContext(),R.drawable.ic_circle));
+
+            }
+        });
+
+        SingletonClass singletonClass=new SingletonClass();
+        Submit(99234);
+
+
+            final Calendar calendar = Calendar.getInstance();
+            final int day = calendar.get(Calendar.DAY_OF_MONTH);
+            final int month = calendar.get(Calendar.MONTH);
+            int year = calendar.get(Calendar.YEAR);
+        String finalDate="";
+        finalDate+=(String.valueOf(day).length()==1 ? "0"+ String.valueOf(day):String.valueOf(day))+(String.valueOf(month+1).length()==1 ? "0" + String.valueOf(month+1):String.valueOf(month+1))+String.valueOf(year);
+
+        //CASE 1
+
+        Log.e("FIREBASEUSER MAIL", firebaseUser.getEmail());
+        firebaseFirestore= FirebaseFirestore.getInstance();
+
+//
+//        firebaseFirestore.collection("UserData")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful())
+//                        {
+//                            QuerySnapshot qsn=task.getResult();
+//                            if (qsn != null) {
+//                                List<DocumentSnapshot> lst=qsn.getDocuments();
+//                                for (DocumentSnapshot d : lst)
+//                                {
+//                                    if(d.getString("email").equals(firebaseUser.getEmail()))
+//                                    {
+//                                        Log.e("CHECK", d.getString("email") + " " + firebaseAuth.getCurrentUser().getEmail());
+//                                        enteredDate =d.getString("city");
+//                                        Log.e("ENTERED DATE", enteredDate);
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//
+//                        }
+//                    }
+//                });
+
+
+
+
+        enteredDate=SingletonClass.getDate();
+//        Query documentSnapshot=firebaseFirestore.collection("UserData").whereEqualTo("email",firebaseUser.getEmail());
+        Log.e("ENETERD DATE SIZE", String.valueOf(enteredDate.length()));
+        String d1= String.valueOf(finalDate.charAt(0))+String.valueOf(finalDate.charAt(1));
+        String d2= String.valueOf(enteredDate.charAt(0))+String.valueOf( enteredDate.charAt(1));
+
+        Log.e("SINGLETON CLASS DATE", enteredDate );
+        Log.e("CURRENT DATE", finalDate );
+
+        String m2= String.valueOf(enteredDate.charAt(2))+ String.valueOf(enteredDate.charAt(3));
+        String m1= String.valueOf(finalDate.charAt(2))+String.valueOf(finalDate.charAt(3));
+
+        String y2= String.valueOf(enteredDate.charAt(4))+String.valueOf( enteredDate.charAt(5))+ String.valueOf(enteredDate.charAt(6))+ String.valueOf(enteredDate.charAt(7));
+        String y1= String.valueOf(finalDate.charAt(4))+String.valueOf(finalDate.charAt(5))+String.valueOf(finalDate.charAt(6))+String.valueOf(finalDate.charAt(7));
+
+        int week=0;
+        Date date=new Date(Integer.parseInt(y1),Integer.parseInt(m1)-1,Integer.parseInt(d1));
+
+        Calendar c1=Calendar.getInstance();
+//        c1.set(Integer.parseInt(y1),Integer.parseInt(m1)-1,Integer.parseInt(d1),0,0);
+        c1.setTime(date);
+        Log.e("YEAR 1",y1  );
+        Log.e("MONTH 1",m1  );
+        Log.e("DAY 1",d1  );
+
+        Calendar c2=Calendar.getInstance();
+//        c2.set(Integer.parseInt(y2),Integer.parseInt(m2)-1,Integer.parseInt(d2),0,0);
+        Date date1=new Date(Integer.parseInt(y2),Integer.parseInt(m2)-1,Integer.parseInt(d2));
+        c2.setTime(date1);
+
+        long remainingDays = Math.round((float) (c2.getTimeInMillis() - c1.getTimeInMillis()) / (24 * 60 * 60 * 1000));
+
+        Log.e("CAlendar 1", String.valueOf(c1.getTime()));
+        Log.e("CAlendar 2", String.valueOf(c2.getTime()));
+            int daysBetween = (int) remainingDays;
+        Log.e("DAYS BETWEEN ", String.valueOf(daysBetween));
+            week=1+(daysBetween/7);
+        Log.e("WEEK BECOMES", String.valueOf(week));
+
+            String currentWeek="Week ";
+            currentWeek+=(String.valueOf(week));
+
+        final String finalCurrentWeek = currentWeek;
+        String temp="";
+        if(week>=1 && week<=3)
+        {
+            stageName.setText("Pre-Seeding");
+            temp="Pre-seeding stage";
+        }
+        else if(week>3 && week<=6)
+        {
+            stageName.setText("Sowing");
+            temp="Sowing stage";
+        }
+        else if(week>6 && week <=11) {
+            stageName.setText("Vegetative");
+            temp="Vegetative Stage";
+        }
+        else if(week>11 && week<=13) {
+            stageName.setText("Pollination/Flowering");
+            temp="Pollination Stage";
+        }
+        else if(week>13 && week<=21) {
+            stageName.setText("Fruiting");
+            temp="Fruiting Stage";
+        }
+        else if(week>21 && week<=24) {
+            stageName.setText("Harvesting");
+            temp="Harvesting Stage";
+        }
+
+
+
+
+        firebaseFirestore.collection("Task A")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                          @Override
+                                          public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                              if (!queryDocumentSnapshots.isEmpty()) {
+                                                  List<DocumentSnapshot> lst = queryDocumentSnapshots.getDocuments();
+                                                  for (DocumentSnapshot d : lst) {
+                                                      if (d.getId().equals(finalCurrentWeek)) {
+                                                          task1.setText(d.getString("Task 1"));
+                                                          task2.setText(d.getString("Task 2"));
+                                                          task3.setText(d.getString("Task 3"));
+                                                          task4.setText(d.getString("Task 4"));
+                                                      }
+                                                  }
+
+                                              }
+                                          }
+                                      });
+
+        final String currentStage="Sowing stage";
+
+        final String finalTemp = temp;
+        firebaseFirestore.collection("Definition")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty())
+                        {
+                            List<DocumentSnapshot> lst=queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : lst)
+                            {
+                                Log.e("Enterd inside", "Inside DOcumetn" );
+                                if(d.getId().equals(finalTemp))
+                                {
+                                    definition.setText(d.getString("Definition"));
+                                    Log.e("DATA IS:---   ", d.getString("Definition") );
+                                }
+
+                            }
+                        }
+                    }
+                });
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        Submit(99234);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -56,8 +323,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-
-
+    public static long daysBetween(Calendar startDate, Calendar endDate) {
+        long end = endDate.getTimeInMillis();
+        long start = startDate.getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

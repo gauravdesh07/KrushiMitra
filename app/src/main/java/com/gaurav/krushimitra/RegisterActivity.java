@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
                                         UserData=firebaseFirestore.collection("UserData");
-                                        User user=new User(names,emails,passwords,mobiles);
+                                        User user=new User(names,emails,passwords,mobiles,"31071999");
                                         UserData.add(user)
                                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                     @Override
