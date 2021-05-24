@@ -10,7 +10,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         app:cardCornerRadius="20dp"
         android:layout_gravity="center"
         app:strokeColor="@color/colorBackground"
@@ -21,6 +21,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
+        android:focusedByDefault="false"
+        android:id="@+id/enter_amount"
         style="@style/CardFont"
         android:hint="Enter Amount"
         android:inputType="numberDecimal"
@@ -28,24 +30,25 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="20dp"
-        android:layout_gravity="center"
-        app:strokeColor="@color/colorBackground"
-        app:strokeWidth="2dp"
-        android:layout_weight="1">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        style="@style/CardFont"
-        android:hint="Description"
-        />
-    </com.google.android.material.card.MaterialCardView>
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        app:cardCornerRadius="20dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        app:strokeColor="@color/colorBackground"-->
+<!--        app:strokeWidth="2dp"-->
+<!--        android:layout_weight="1">-->
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:gravity="center"-->
+<!--        style="@style/CardFont"-->
+<!--        android:id="@+id/enter_description"-->
+<!--        android:hint="Description"-->
+<!--        />-->
+<!--    </com.google.android.material.card.MaterialCardView>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -78,6 +81,8 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:gravity="center"
+            android:clickable="true"
+            android:id="@+id/iv1"
             android:layout_weight="1"
             android:src="@drawable/ic_add_new"
             />
@@ -87,6 +92,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:gravity="center"
+            android:id="@+id/iv2"
             android:layout_weight="1"
             android:src="@drawable/ic_line_circle_negative"
             />
@@ -102,15 +108,34 @@
         app:strokeColor="@color/colorBackground"
         app:strokeWidth="2dp"
         android:layout_weight="1">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="@color/colorBackground"
-        android:textSize="20sp"
-        android:text="Total Amount Spent"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textColor="@color/colorBackground"
+                android:textSize="20sp"
+                android:text="Total Amount Spent : "
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:id="@+id/tv_amount_spent"
+                android:textColor="@color/colorBackground"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -122,15 +147,37 @@
         app:strokeColor="@color/colorBackground"
         app:strokeWidth="2dp"
         android:layout_weight="1">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="@color/colorBackground"
-        android:textSize="20sp"
-        android:text="Total Amount Gained"
-        />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorBackground"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:text="Total Amount Gained : "
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorBackground"
+                android:textSize="20sp"
+                android:id="@+id/tv_amount_gained"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -148,8 +195,19 @@
         android:text="Profit"
         android:layout_gravity="center"
         android:gravity="center"
+        android:id="@+id/tv_profit"
         android:textColor="@color/colorBackground"
         android:textSize="20sp"
         />
     </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="OK"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/okayButton"/>
 </LinearLayout>

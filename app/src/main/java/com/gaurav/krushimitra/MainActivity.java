@@ -378,6 +378,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_profile:
                 startActivity(new Intent(this, ProfileActivity.class));
                 break;
+            case R.id.nav_expenditure:
+                startActivity(new Intent(this,ExpenditureActivity.class));
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

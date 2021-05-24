@@ -133,6 +133,7 @@ public class DiagnosisActivity extends AppCompatActivity {
                 try {
                     linearLayout.setVisibility(View.VISIBLE);
                     textView.setText("");
+                    textView1.setText("");
                     final Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                     imageView.setImageBitmap(bitmap);
 //                    imageView.setImageURI(imageUri);
