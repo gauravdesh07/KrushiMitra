@@ -362,8 +362,8 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="25sp"
-                android:text="Finance"
+                android:textSize="20sp"
+                android:text="Current Week"
                 />
             </com.google.android.material.card.MaterialCardView>
 
@@ -374,17 +374,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:textSize="15sp"
-                android:text="Money Spent ___________"
-                android:textColor="@color/cardview_light_background"
-                />
+                android:fontFamily="@font/berkshire_swash"
 
-            <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:text="Money earned ___________"
+                android:id="@+id/week_number"
+                android:text="Week 1"
                 android:textColor="@color/cardview_light_background"
                 />
 

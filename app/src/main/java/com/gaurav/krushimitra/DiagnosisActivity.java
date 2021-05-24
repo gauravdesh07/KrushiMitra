@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +24,17 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.android.volley.RequestQueue;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +52,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -61,7 +69,9 @@ import okio.Buffer;
 public class DiagnosisActivity extends AppCompatActivity {
     Button selectButton;
     ImageView imageView;
-    TextView textView;
+    TextView textView,textView1;
+    LinearLayout linearLayout;
+    FirebaseFirestore firebaseFirestore;
     private RequestQueue requestQueue;
     public int RESULT_LOAD_IMAGE = 1;
 
@@ -93,9 +103,13 @@ public class DiagnosisActivity extends AppCompatActivity {
         selectButton = findViewById(R.id.selectButton);
         imageView = findViewById(R.id.imageView);
         textView = findViewById(R.id.textView);
+        textView1=findViewById(R.id.textView1);
 
+        firebaseFirestore=FirebaseFirestore.getInstance();
+        linearLayout=findViewById(R.id.linear1);
         textView.setVisibility(View.GONE);
         imageView.setVisibility(View.GONE);
+
 
         selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +131,7 @@ public class DiagnosisActivity extends AppCompatActivity {
             if (requestCode == 100) {
                 Uri imageUri = data.getData();
                 try {
+                    linearLayout.setVisibility(View.VISIBLE);
                     textView.setText("");
                     final Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
                     imageView.setImageBitmap(bitmap);
@@ -154,17 +169,53 @@ public class DiagnosisActivity extends AppCompatActivity {
                     String responseStr = response.body().string();
                     Log.e("OP",responseStr);
                     try {
-                        JSONObject jsonObject=new JSONObject(responseStr);
-                        ans=jsonObject.getString("disease_name");
+                        final JSONObject jsonObject=new JSONObject(responseStr);
+                        ans= (String) jsonObject.get("disease_name");
                         Log.e("NAME", ans);
+
                         runOnUiThread(new Runnable() {
 
                             @Override
                             public void run() {
 
+                                firebaseFirestore.collection("Remedies")
+                                        .get()
+                                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                List<DocumentSnapshot> lst=queryDocumentSnapshots.getDocuments();
+                                                for(DocumentSnapshot d: lst)
+                                                {
+                                                    try {
+                                                        if(d.getId().equals(jsonObject.get("disease_name")))
+                                                        {
+                                                            Log.e("COME INSIDE  ", "SUCCESSFULLY INSIDE" );
+                                                            String cr=d.getString("remedy");
+                                                            cr=cr.replaceAll("\\\\n","\n");
+                                                            textView1.setText(cr);
+                                                            textView1.setTextSize(20);
+                                                            break;
+                                                        }
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(DiagnosisActivity.this, "Error ! Check your Internet Connection", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+//                                    textView1.setText();
                                 // Stuff that updates the UI
-                                tv.setText(ans);
-                                tv.setTextSize(12);
+                                try {
+                                    tv.setText("Predicted " + jsonObject.get("disease_name"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                tv.setTextSize(20);
                             }
                         });
 

@@ -24,6 +24,7 @@
 
 
     <LinearLayout
+        style="@style/CardFont"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
@@ -55,6 +56,7 @@
                 android:fontFamily="@font/equinox"
                 android:layout_gravity="center"
                 android:gravity="center"
+                style="@style/CardFont"
                 android:textColor="@color/cardview_light_background"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
