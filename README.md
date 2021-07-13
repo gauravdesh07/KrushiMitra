@@ -21,7 +21,7 @@ To tackle these issues, we have created an application where a hobbyist/novice c
 ![Screenshot](/Dashboard.png)
 
 #### Cultivation:
-![Screenshot](/Cultivation.png)
+![Screenshot](/Cultivation.jpeg)
 
 #### Profile:
 ![Screenshot](/login.jpeg)
