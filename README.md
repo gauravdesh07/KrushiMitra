@@ -15,25 +15,16 @@ To tackle these issues, we have created an application where a hobbyist/novice c
 - A planned schedule to guide the user throughout the cycle on basis of week and cultivation stage.
 - Expenditure calculator for profit/loss calculation of user.
 
-## Demo
-
-![Sample illustration](/docs/videodemo.gif)
-
 ## Sample photos
 
 #### Dashboard:
-![Screenshot](/docs/dash.png)
+![Screenshot](/Dashboard.png)
 
 #### Cultivation:
-![Screenshot](/docs/cult1.png)
-
-![Screenshot](/docs/cult2.png)
-
-#### Expenditure:
-![Screenshot](/docs/exp.png)
+![Screenshot](/Cultivation.png)
 
 #### Profile:
-![Screenshot](/docs/prof.png)
+![Screenshot](/login.jpeg)
 
 ## ML models
 
